@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Search, ShoppingCart, Menu, MapPin, User, Heart, X, ChevronDown } from 'lucide-react';
 
 const Header = () => {
+  const navigate = useNavigate();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
   const [showSearchSuggestions, setShowSearchSuggestions] = useState(false);
@@ -50,7 +52,7 @@ const Header = () => {
             >
               <Menu size={24} />
             </button>
-            <div className="flex items-center space-x-1">
+            <div className="flex items-center space-x-1 cursor-pointer" onClick={() => navigate('/')}>
               <div className="w-10 h-10 bg-blue-600 rounded-full flex items-center justify-center">
                 <span className="text-white font-bold text-lg">W</span>
               </div>
@@ -111,6 +113,12 @@ const Header = () => {
               <ShoppingCart size={20} />
               <span className="text-sm hidden md:block">Cart</span>
               <span className="absolute -top-2 -right-2 bg-yellow-400 text-black text-xs rounded-full w-5 h-5 flex items-center justify-center">3</span>
+            </button>
+            <button 
+              onClick={() => navigate('/ai-assistant')}
+              className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors font-medium"
+            >
+              AI Assistant
             </button>
           </div>
         </div>
