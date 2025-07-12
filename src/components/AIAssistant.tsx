@@ -360,6 +360,7 @@ const AIAssistant = () => {
                   onClick={handleSearch}
                   className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-blue-600 p-2 rounded-lg hover:bg-blue-700 transition-colors"
                 >
+                  <input type = file></input>
                   <Search size={18} className="text-white" />
                 </button>
               </div>
