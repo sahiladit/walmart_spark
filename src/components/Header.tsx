@@ -109,6 +109,12 @@ const Header = () => {
               <User size={20} />
               <span className="text-sm hidden md:block">Account</span>
             </button>
+            <button 
+              onClick={() => navigate('/login')}
+              className="bg-gray-600 text-white px-4 py-2 rounded-lg hover:bg-gray-700 transition-colors font-medium"
+            >
+              Login
+            </button>
             <button className="flex items-center space-x-1 hover:text-blue-600 transition-colors relative">
               <ShoppingCart size={20} />
               <span className="text-sm hidden md:block">Cart</span>
