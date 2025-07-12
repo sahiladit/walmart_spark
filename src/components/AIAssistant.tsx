@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useUser } from '@clerk/clerk-react';
 import { 
   Search, 
   ShoppingCart, 
@@ -18,6 +19,7 @@ import {
 
 const AIAssistant = () => {
   const navigate = useNavigate();
+  const { user } = useUser();
   const [searchQuery, setSearchQuery] = useState('');
   const [chatMessage, setChatMessage] = useState('');
   const [searchResults, setSearchResults] = useState([]);
@@ -26,7 +28,7 @@ const AIAssistant = () => {
     {
       id: 1,
       type: 'bot',
-      message: `Hello there! I'm your Walmart AI Assistant. How can I help you find products or answer questions today?`,
+      message: `Hello ${user?.firstName || 'there'}! I'm your Walmart AI Assistant. How can I help you find products or answer questions today?`,
       timestamp: new Date()
     }
   ]);
@@ -440,47 +442,50 @@ const AIAssistant = () => {
               <div className="space-y-3 overflow-y-auto h-[calc(100%-120px)]">
                 {cartItems.length > 0 ? (
                   cartItems.map((item) => (
-                    <div key={item.id} className="flex items-center space-x-3 p-3 bg-gray-50 rounded-lg">
+                    <div key={item.id} className="flex items-center space-x-3 p-2 bg-gray-50 rounded-lg">
                       <img
                         src={item.image}
                         alt={item.name}
-                        className="w-16 h-16 object-cover rounded"
+                        className="w-12 h-12 object-cover rounded"
                       />
                       <div className="flex-1">
-                        <h4 className="font-medium text-sm text-gray-800">{item.name}</h4>
-                        <p className="text-green-600 font-semibold">${item.price.toFixed(2)}</p>
-                        <div className="flex items-center space-x-2 mt-2">
-                          <button
-                            onClick={() => updateQuantity(item.id, -1)}
-                            className="bg-gray-200 p-1 rounded hover:bg-gray-300 transition-colors"
-                          >
-                            <Minus size={14} />
-                          </button>
-                          <span className="px-3 py-1 bg-white rounded border">{item.quantity}</span>
-                          <button
-                            onClick={() => updateQuantity(item.id, 1)}
-                            className="bg-gray-200 p-1 rounded hover:bg-gray-300 transition-colors"
-                          >
-                            <Plus size={14} />
-                          </button>
+                        <h4 className="font-medium text-sm">{item.name}</h4>
+                        <div className="flex items-center space-x-2">
+                          <span className="text-green-600 font-semibold">${item.price}</span>
+                          <div className="flex items-center space-x-1">
+                            <button
+                              onClick={() => updateQuantity(item.id, -1)}
+                              className="p-1 hover:bg-gray-200 rounded"
+                            >
+                              <Minus size={14} />
+                            </button>
+                            <span className="text-sm w-6 text-center">{item.quantity}</span>
+                            <button
+                              onClick={() => updateQuantity(item.id, 1)}
+                              className="p-1 hover:bg-gray-200 rounded"
+                            >
+                              <Plus size={14} />
+                            </button>
+                          </div>
                         </div>
                       </div>
                       <button
                         onClick={() => removeItem(item.id)}
-                        className="text-red-500 hover:text-red-700 transition-colors"
+                        className="text-red-500 hover:text-red-700"
                       >
                         <Trash2 size={16} />
-                      </div>
+                      </button>
                     </div>
                   ))
                 ) : (
                   <div className="text-center py-8 text-gray-500">
                     <ShoppingCart size={48} className="mx-auto mb-2 text-gray-300" />
                     <p>Your cart is empty</p>
-                    <p className="text-sm">Search for products to add them to your cart</p>
+                    <p className="text-sm">Start adding some items!</p>
                   </div>
                 )}
               </div>
+              
               <button 
                 className="w-full mt-4 bg-green-600 text-white py-2 rounded-lg hover:bg-green-700 transition-colors font-medium disabled:bg-gray-400 disabled:cursor-not-allowed"
                 disabled={cartItems.length === 0}
