@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useUser } from '@clerk/clerk-react';
+import { useAuth } from '../contexts/AuthContext';
 import { 
   Search, 
   ShoppingCart, 
@@ -19,7 +19,7 @@ import {
 
 const AIAssistant = () => {
   const navigate = useNavigate();
-  const { user } = useUser();
+  const { currentUser } = useAuth();
   const [searchQuery, setSearchQuery] = useState('');
   const [chatMessage, setChatMessage] = useState('');
   const [searchResults, setSearchResults] = useState([]);
@@ -28,7 +28,7 @@ const AIAssistant = () => {
     {
       id: 1,
       type: 'bot',
-      message: `Hello ${user?.firstName || 'there'}! I'm your Walmart AI Assistant. How can I help you find products or answer questions today?`,
+      message: `Hello ${currentUser?.displayName || currentUser?.email?.split('@')[0] || 'there'}! I'm your Walmart AI Assistant. How can I help you find products or answer questions today?`,
       timestamp: new Date()
     }
   ]);

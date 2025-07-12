@@ -1,12 +1,23 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../contexts/AuthContext';
 import { Search, ShoppingCart, Menu, MapPin, User, Heart, X, ChevronDown } from 'lucide-react';
 
 const Header = () => {
   const navigate = useNavigate();
+  const { currentUser, logout } = useAuth();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
   const [showSearchSuggestions, setShowSearchSuggestions] = useState(false);
+
+  const handleLogout = async () => {
+    try {
+      await logout();
+      navigate('/');
+    } catch (error) {
+      console.error('Failed to log out', error);
+    }
+  };
 
   const searchSuggestions = [
     'iPhone 15',
@@ -109,23 +120,39 @@ const Header = () => {
               <User size={20} />
               <span className="text-sm hidden md:block">Account</span>
             </button>
-            <button className="bg-gray-600 text-white px-4 py-2 rounded-lg hover:bg-gray-700 transition-colors font-medium">
-              Sign In
-            </button>
-            <button className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors font-medium">
-              Sign Up
-            </button>
+            {currentUser ? (
+              <div className="flex items-center space-x-2">
+                <span className="text-sm text-gray-700 hidden md:block">
+                  Hi, {currentUser.displayName || currentUser.email?.split('@')[0]}
+                </span>
+                <button 
+                  onClick={handleLogout}
+                  className="bg-gray-600 text-white px-4 py-2 rounded-lg hover:bg-gray-700 transition-colors font-medium"
+                >
+                  Sign Out
+                </button>
+              </div>
+            ) : (
+              <button 
+                onClick={() => navigate('/login')}
+                className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors font-medium"
+              >
+                Sign In
+              </button>
+            )}
             <button className="flex items-center space-x-1 hover:text-blue-600 transition-colors relative">
               <ShoppingCart size={20} />
               <span className="text-sm hidden md:block">Cart</span>
               <span className="absolute -top-2 -right-2 bg-yellow-400 text-black text-xs rounded-full w-5 h-5 flex items-center justify-center">3</span>
             </button>
-            <button 
-              onClick={() => navigate('/ai-assistant')}
-              className="bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-700 transition-colors font-medium"
-            >
-              AI Assistant
-            </button>
+            {currentUser && (
+              <button 
+                onClick={() => navigate('/ai-assistant')}
+                className="bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-700 transition-colors font-medium"
+              >
+                AI Assistant
+              </button>
+            )}
           </div>
         </div>
       </div>
