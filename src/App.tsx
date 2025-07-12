@@ -1,10 +1,11 @@
 import React from 'react';
-import { SignedIn, SignedOut, RedirectToSignIn } from '@clerk/clerk-react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Header from './components/Header';
 import Hero from './components/Hero';
 import Categories from './components/Categories';
 import ProductSection from './components/ProductSection';
 import Footer from './components/Footer';
+import AIAssistant from './components/AIAssistant';
 import { featuredProducts, dealsProducts, groceryProducts } from './data/products';
 
 function App() {
