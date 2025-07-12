@@ -6,6 +6,7 @@ import Categories from './components/Categories';
 import ProductSection from './components/ProductSection';
 import Footer from './components/Footer';
 import AIAssistant from './components/AIAssistant';
+import AIAssistant from './components/AIAssistant';
 import { featuredProducts, dealsProducts, groceryProducts } from './data/products';
 
 function App() {
