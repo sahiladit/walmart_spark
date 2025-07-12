@@ -375,7 +375,16 @@ const handleOCRFileUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
                   
                   <Search size={18} className="text-white" />
                 </button>
-                <input type = "file"></input>
+                <div className="flex flex-col gap-2 mt-2">
+  <label className="text-sm text-gray-600">Or upload an image/PDF for OCR search:</label>
+  <input
+    type="file"
+    accept="image/*,application/pdf"
+    onChange={handleOCRFileUpload}
+    className="file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100 border border-gray-300 rounded-lg text-sm"
+  />
+</div>
+
               </div>
 
               {/* Popular Searches */}
