@@ -3,12 +3,13 @@ import { getAuth } from 'firebase/auth';
 import { getFirestore } from 'firebase/firestore';
 
 const firebaseConfig = {
-  apiKey: "demo-api-key",
-  authDomain: "walmart-demo.firebaseapp.com",
-  projectId: "walmart-demo",
-  storageBucket: "walmart-demo.appspot.com",
-  messagingSenderId: "123456789",
-  appId: "1:123456789:web:abcdef123456"
+   apiKey: "AIzaSyB36ry8DJeHkAD8GRezstmwY8fztRLyKg4",
+  authDomain: "lawgic-dac0d.firebaseapp.com",
+  projectId: "lawgic-dac0d",
+  storageBucket: "lawgic-dac0d.firebasestorage.app",
+  messagingSenderId: "516992027397",
+  appId: "1:516992027397:web:2c099f5d9bf13c20c7856c",
+  measurementId: "G-81PVXVXW0Q"
 };
 
 // Initialize Firebase
