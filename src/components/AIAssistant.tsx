@@ -363,7 +363,7 @@ const AIAssistant = () => {
                   
                   <Search size={18} className="text-white" />
                 </button>
-                <input type = file></input>
+                <input type = "file"></input>
               </div>
 
               {/* Popular Searches */}
