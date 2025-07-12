@@ -6,7 +6,6 @@ import Hero from './components/Hero';
 import Categories from './components/Categories';
 import ProductSection from './components/ProductSection';
 import Footer from './components/Footer';
-import AIAssistant from './components/AIAssistant';
 import Login from './components/Login';
 import AIAssistant from './components/AIAssistant';
 import { featuredProducts, dealsProducts, groceryProducts } from './data/products';
