@@ -33,6 +33,17 @@ const AIAssistant = () => {
       timestamp: new Date()
     }
   ]);
+const handleOCRFileUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+  const file = e.target.files?.[0];
+  if (!file) return;
+
+  setOcrFile(file);
+
+  // Stub: Replace this with actual OCR logic
+  const fakeExtractedText = "iPhone 15"; // pretend we OCR'd this
+  setSearchQuery(fakeExtractedText);
+  performSearch(fakeExtractedText);
+};
 
   const [cartItems, setCartItems] = useState([
     {
