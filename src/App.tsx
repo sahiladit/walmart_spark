@@ -1,12 +1,12 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { SignedIn, SignedOut, RedirectToSignIn } from '@clerk/clerk-react';
 import Header from './components/Header';
 import Hero from './components/Hero';
 import Categories from './components/Categories';
 import ProductSection from './components/ProductSection';
 import Footer from './components/Footer';
 import AIAssistant from './components/AIAssistant';
-import Login from './components/Login';
 import { featuredProducts, dealsProducts, groceryProducts } from './data/products';
 
 function App() {
@@ -37,8 +37,16 @@ function App() {
               <Footer />
             </>
           } />
-          <Route path="/ai-assistant" element={<AIAssistant />} />
-          <Route path="/login" element={<Login />} />
+          <Route path="/ai-assistant" element={
+            <>
+              <SignedIn>
+                <AIAssistant />
+              </SignedIn>
+              <SignedOut>
+                <RedirectToSignIn />
+              </SignedOut>
+            </>
+          } />
         </Routes>
       </div>
     </Router>
