@@ -37,6 +37,7 @@ function App() {
           } />
           <Route path="/ai-assistant" element={
             <AIAssistant />
+          } />
         </Routes>
       </div>
     </Router>
