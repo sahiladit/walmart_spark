@@ -44,6 +44,7 @@ function App() {
                     </>
                   } />
                   <Route path="/ai-assistant" element={<AIAssistant />} />
+                  <Route path="/ai-assistant" element={<AIAssistant />} />
                 </Routes>
               </>
             } />

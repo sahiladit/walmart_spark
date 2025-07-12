@@ -114,7 +114,7 @@ const Header = () => {
             </button>
             <button className="flex items-center space-x-1 hover:text-blue-600 transition-colors">
               <Heart size={20} />
-              <span className="text-sm hidden md:block">Reorder</span>
+              <span className="text-sm hidden md:block">Wishlist</span>
             </button>
             <button className="flex items-center space-x-1 hover:text-blue-600 transition-colors">
               <User size={20} />
@@ -125,6 +125,12 @@ const Header = () => {
                 <span className="text-sm text-gray-700 hidden md:block">
                   Hi, {currentUser.displayName || currentUser.email?.split('@')[0]}
                 </span>
+                <button 
+                  onClick={() => navigate('/ai-assistant')}
+                  className="bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-700 transition-colors font-medium"
+                >
+                  AI Assistant
+                </button>
                 <button 
                   onClick={handleLogout}
                   className="bg-gray-600 text-white px-4 py-2 rounded-lg hover:bg-gray-700 transition-colors font-medium"
@@ -145,14 +151,6 @@ const Header = () => {
               <span className="text-sm hidden md:block">Cart</span>
               <span className="absolute -top-2 -right-2 bg-yellow-400 text-black text-xs rounded-full w-5 h-5 flex items-center justify-center">3</span>
             </button>
-            {currentUser && (
-              <button 
-                onClick={() => navigate('/ai-assistant')}
-                className="bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-700 transition-colors font-medium"
-              >
-                AI Assistant
-              </button>
-            )}
           </div>
         </div>
       </div>
