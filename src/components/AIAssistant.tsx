@@ -24,6 +24,7 @@ const AIAssistant = () => {
   const [chatMessage, setChatMessage] = useState('');
   const [searchResults, setSearchResults] = useState([]);
   const [isSearching, setIsSearching] = useState(false);
+  const [ocrFile, setOcrFile] = useState<File | null>(null);
   const [chatHistory, setChatHistory] = useState([
     {
       id: 1,
