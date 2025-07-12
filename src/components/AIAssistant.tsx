@@ -370,7 +370,7 @@ const handleOCRFileUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
                 />
                 <button 
                   onClick={handleSearch}
-                  className="absolute right-2 top-1/2 transform -translate-y-12 bg-blue-600 p-2 rounded-lg hover:bg-blue-700 transition-colors"
+                  className="absolute right-2 top-1/2 transform -translate-y-15 bg-blue-600 p-2 rounded-lg hover:bg-blue-700 transition-colors"
                 >
                   
                   <Search size={18} className="text-white" />
